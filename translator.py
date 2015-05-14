@@ -13,6 +13,27 @@ def tokenify(string):
     return tokens
 
 
+def get_indent(line):
+    count = 0
+    for i in line:
+        if i == ' ':
+            count += 1
+        else:
+            break
+    return count
+
+
+def reconstruct_line(tokens, indent):
+    string = ' '.join(tokens)
+    for i in "[]{}()-=+/<>.,''" + '"':
+        string = string.replace(' ' + i + ' ', i)
+        string = string.replace(' ' + i, i)
+        string = string.replace(i + ' ', i)
+    string = string.strip()
+    string = (' ' * indent) + string
+    return string
+
+
 class Translator:
     """
     Open file.
@@ -60,10 +81,11 @@ class Translator:
             self.__open_files(filepath)
         # begin translation
         for line in self.inp.readlines():
+            indent = get_indent(line)
             line = line.strip()
             tokens = tokenify(line)
             new_tokens = self.__lookup(tokens)
-            new_line = ' '.join(new_tokens)
+            new_line = reconstruct_line(new_tokens, indent)
             # print(new_line)
             self.out.write(new_line + '\n')
         self.__close_files()
