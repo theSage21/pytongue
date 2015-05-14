@@ -3,9 +3,13 @@ import pickle
 
 
 def tokenify(string):
+    for i in "[]{}()-=+/<>.,''" + '"':
+        string = string.replace(i, ' ' + i + ' ')
     tokens = string.split(' ')
     while '' in tokens:
         tokens.remove('')
+    for t in tokens:
+        t = t.strip()
     return tokens
 
 
@@ -30,19 +34,25 @@ class Translator:
         self.output_file_path = os.path.abspath('temp_translation_file.py')
         self.inp = open(self.input_file_path, 'r')
         self.out = open(self.output_file_path, 'w')
-        self.language = self.inp.readline()[2:]
-        f = open(os.path.join(os.path.split(os.getcwd())[0], 'langauges', self.language), 'rb')
+        first_line = self.inp.readline()
+        if first_line[0] != '#':
+            raise Exception("Language not found")
+        self.language = first_line[2:].strip().upper()
+        f = open(os.path.join(os.getcwd(), 'languages', self.language), 'rb')
         self.mapping = pickle.load(f)
         f.close()
 
     def __lookup(self, tokens):
         "Lookup in mapping"
         new_tokens = []
-        while len(tokens) != 0:
-            left, right = tokens[0], tokens[1:]
-            translation = self.mapping[left]
+        for token in tokens:
+            try:
+                # print('trying: ', token)
+                translation = self.mapping[token]
+            except KeyError:
+                # print('Exception')
+                translation = token
             new_tokens.append(translation)
-            tokens = right
         return new_tokens
 
     def translate(self, filepath=None):
@@ -54,5 +64,11 @@ class Translator:
             tokens = tokenify(line)
             new_tokens = self.__lookup(tokens)
             new_line = ' '.join(new_tokens)
+            # print(new_line)
             self.out.write(new_line + '\n')
         self.__close_files()
+
+if __name__ == '__main__':
+    import sys
+    tr = Translator(sys.argv[1])
+    tr.translate()

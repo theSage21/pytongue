@@ -1,0 +1,3 @@
+[submodule "languages/google-translate-python"]
+	path = languages/google-translate-python
+	url = https://github.com/terryyin/google-translate-python
