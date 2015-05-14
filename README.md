@@ -8,7 +8,7 @@ You can add your own languages. Third party-libraries are sadly not supported.
 Languages
 ---------
 
-In order to train a new language use the [https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes](wikipedia ISO-code list)
+In order to train a new language use the [Wikipedia list of ISO-codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
 
 Train new languages by:
 1. cd languages
