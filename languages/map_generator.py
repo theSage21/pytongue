@@ -10,7 +10,7 @@ def ask_mapping(token_list):
     mapping = {}
     for token in token_list:
         translation = translator.translate(token)
-        translation = translation.replace(' ', '_')
+        translation = translation.replace(' ', '_').strip()
         mapped = {translation: token}
         print(mapped)
         mapping.update(mapped)
