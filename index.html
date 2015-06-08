@@ -42,6 +42,29 @@ This is meant as a tool to teach people programming without having to teach them
 You can add your own languages. Non standard libraries are not yet supported.</p>
 
 <h2>
+<a id="working" class="anchor" href="#working" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working</h2>
+
+<p>This is a simple transliteration program. The idea is as follows.</p>
+
+<ol>
+<li>Get a mapping for a language from Google translate.</li>
+<li>Store the mapping as a dictionary.</li>
+<li>Get a sample source file.</li>
+<li>Identify what language it is written in.</li>
+<li>Load the required language and translate into normal Python.</li>
+<li>Run the newly generated file.</li>
+</ol>
+
+<h2>
+<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing</h2>
+
+<pre><code>git clone https://github.com/theSage21/pytongue.git
+cd pytongue
+git submodule init
+git submodule update
+</code></pre>
+
+<h2>
 <a id="languages" class="anchor" href="#languages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Languages</h2>
 
 <p>In order to train a new language use the <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">Wikipedia list of ISO-codes</a></p>
@@ -71,6 +94,54 @@ You can add your own languages. Non standard libraries are not yet supported.</p
 <li>Run with <code>./pytongue.sh my_code.py</code> instead of <code>python mycode.py</code>
 </li>
 </ol>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<p>If you were to write a useless example in Hindi it might be something like this.</p>
+
+<pre><code># HI
+छाप('नमस्ते दुनिया!')
+के_लिए i में range(10):
+    छाप(i)
+जबकि 1:
+    छाप('नमस्ते दुनिया!')
+</code></pre>
+
+<p>This translates to</p>
+
+<pre><code># HI
+print('Hello world!')
+for i in range(10):
+    print(i)
+while 1:
+    print('Hello World!')
+</code></pre>
+
+<p>To generate examples in other languages:</p>
+
+<ol>
+<li>Create a mapping for the required language. (we assume ES here)</li>
+<li>Go to root folder and <code>python3 make_examples.py</code>
+</li>
+<li>You example is generated in <code>examples/ES_example.py</code>
+</li>
+</ol>
+
+<p>To generate a different example edit the <code>examples/example.py</code> file.</p>
+
+<h2>
+<a id="what-if-languages-do-not-translate-properly" class="anchor" href="#what-if-languages-do-not-translate-properly" aria-hidden="true"><span class="octicon octicon-link"></span></a>What if languages do not translate properly?</h2>
+
+<p>If the translation provided by Google feels wrong there is nothing to worry about.
+Since the translation is actually implemented using a dictionary, all you have to do is change the key-value pairs.</p>
+
+<h2>
+<a id="what-is-the-google-part-again" class="anchor" href="#what-is-the-google-part-again" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the Google part again?</h2>
+
+<p>That is to automate the process of translation mapping. Translating a lot of words gets tiring very quickly.</p>
+
+<p>You can create your own mapping if you want in any language you want.</p>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
