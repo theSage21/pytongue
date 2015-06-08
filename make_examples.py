@@ -1,3 +1,4 @@
+#! /bin/bash
 import translator as tr
 import pickle
 import os
@@ -39,7 +40,7 @@ if __name__ == '__main__':
     for ln in lang:
         print(ln)
         mapping = get_mapping(ln)
-        new_lines = []
+        new_lines = ['# ' + os.path.split(ln)[-1]]
         for line in example_lines:
             indent = tr.get_indent(line)
             line = line.strip()

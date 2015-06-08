@@ -1,3 +1,4 @@
+# ZH
 列印('Hello world')
 def factorial(n):
     如果 n==1 或 0:

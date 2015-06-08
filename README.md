@@ -19,6 +19,8 @@ Train new languages by:
 2. `python3 map_generator.py`
 3. enter the language code you want to train.
 
+You can generate new examples with the `make_examples.py` file.
+
 Usage
 -----
 

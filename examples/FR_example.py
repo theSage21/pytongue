@@ -1,3 +1,4 @@
+# FR
 imprimer('Hello world')
 Déf.factorial(n):
     si n==1 ou 0:
