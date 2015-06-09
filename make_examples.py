@@ -1,6 +1,6 @@
 #! /bin/bash
 import translator as tr
-import pickle
+import json
 import os
 
 here = os.getcwd()
@@ -19,8 +19,10 @@ def get_lines(name):
     return lines
 
 def get_mapping(filename):
-    f = open(filename, 'rb')
-    data = pickle.load(f)
+    f = open(filename, 'r')
+    lines = f.readlines()
+    string = ''.join(lines)
+    data = json.loads(string)
     f.close()
     new_data = {}
     for i in data.keys():

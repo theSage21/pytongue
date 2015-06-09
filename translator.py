@@ -1,5 +1,5 @@
 import os
-import pickle
+import json
 
 
 def tokenify(string):
@@ -59,8 +59,8 @@ class Translator:
         if first_line[0] != '#':
             raise Exception("Language not found")
         self.language = first_line[2:].strip().upper()
-        f = open(os.path.join(os.getcwd(), 'languages', self.language), 'rb')
-        self.mapping = pickle.load(f)
+        f = open(os.path.join(os.getcwd(), 'languages', self.language), 'r')
+        self.mapping = json.loads(''.join(f.readlines()))
         f.close()
 
     def __lookup(self, tokens):

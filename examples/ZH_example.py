@@ -6,5 +6,5 @@ def factorial(n):
     else:
         重回 factorial(n-1)* n
 
-如果 __name__=='__main__':
+如果 __名称__=='__main__':
     列印(factorial(5))
