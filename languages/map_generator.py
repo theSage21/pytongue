@@ -1,10 +1,10 @@
-import pickle
+import json
 from translate import Translator
 
 
 def ask_mapping(token_list):
     "Asks the user for a mapping"
-    translation_name = input('Enter code of target language("in" for hindi): ')
+    translation_name = input('Enter code of target language("hi" for hindi): ')
     translation_name = translation_name.upper().strip()
     translator = Translator(to_lang=translation_name)
     mapping = {}
@@ -21,8 +21,10 @@ def ask_mapping(token_list):
         mapped = {translation: token}
         print(mapped)
         mapping.update(mapped)
-    f = open(translation_name, 'wb')
-    pickle.dump(mapping, f)
+    f = open(translation_name, 'w')
+    f.write(json.dumps(mapping,
+                       ensure_ascii=False,
+                       indent=4))
     f.close()
 
 
