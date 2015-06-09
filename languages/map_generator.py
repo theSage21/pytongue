@@ -13,7 +13,10 @@ def ask_mapping(token_list):
         if token[:2] + token[-2:] == '____':
             token = token[2:-2]
             internal = True
-        translation = translator.translate(token)
+        try:
+            translation = translator.translate(token)
+        except:
+            print('>'*10, 'Token failed to translate :|', token + '|')
         translation = translation.replace(' ', '_').strip()
         if internal:
             token = '__' + token + '__'
